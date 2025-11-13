@@ -6,13 +6,13 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 23:05:58 by ingrid            #+#    #+#             */
-/*   Updated: 2025/11/13 18:40:40 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/11/13 18:48:07 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	sa(t_list *a)
+void	sa(t_list_swap *a)
 {
 	int	temp;
 
@@ -24,11 +24,11 @@ void	sa(t_list *a)
 	}
 }
 
-void	push_top(t_list **top, int valor)
+void	push_top(t_list_swap **top, int valor)
 {
-	t_list	*novo;
+	t_list_swap	*novo;
 
-	novo = malloc(sizeof (t_list));
+	novo = malloc(sizeof (t_list_swap));
 	if (!novo)
 		return ;
 	novo->num = valor;
@@ -39,9 +39,9 @@ void	push_top(t_list **top, int valor)
 	*top = novo;
 }
 
-void	pop_top(t_list **top)
+void	pop_top(t_list_swap **top)
 {
-	t_list	*temp;
+	t_list_swap	*temp;
 
 	if (*top == NULL)
 		return ;
