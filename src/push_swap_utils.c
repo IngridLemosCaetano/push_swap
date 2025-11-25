@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ilemos-c <ilemos-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 23:05:58 by ingrid            #+#    #+#             */
-/*   Updated: 2025/11/25 11:35:05 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/11/25 15:54:11 by ilemos-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ void	error_printf(void)
 {
 	ft_printf("Error\n");
 	exit(1);
+}
+
+int	is_space(char c)
+{
+	if (c == ' ' || c == '\t')
+		return (1);
+	return (0);
 }
 
 void	ft_free_array(char **array)
@@ -65,6 +72,67 @@ int	is_repeat(int *array, int num)
 	return (0);
 }
 
+// long	ft_atol(const char *str)
+// {
+// 	long	i;
+// 	long	sign;
+// 	long	result;
+
+// 	i = 0;
+// 	sign = 1;
+// 	result = 0;
+// 	while (is_space(str[i]))
+// 		i++;
+// 	if (str[i] == '+' || str[i] == '-')
+// 	{
+// 		if (str[i] == '-')
+// 			sign = -1;
+// 		i++;
+// 	}
+// 	if (!str[i])
+// 		return (0);
+// 	while (str[i] >= '0' && str[i] <= '9')
+// 	{
+// 		result = result * 10 + (str[i] - '0');
+// 		i++;
+// 	}
+// 	result*=sign;
+// 	if (result > INT_MAX || result < INT_MIN)
+// 		return (0);
+// 	return (result);
+// }
+
+long	ft_atol(const char *str, long num)
+{
+	long	i;
+	long	sign;
+	long	result;
+
+	i = 0;
+	sign = 1;
+	result = 0;
+	while (is_space(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	if (!str[i])
+		return (0);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	result*=sign;
+	if (result > INT_MAX || result < INT_MIN)
+		return (0);
+	num = (int)result;
+	return (result);
+}
+
 int	*valid_str(char *str)
 {
 	char	**array_str;
@@ -88,21 +156,14 @@ int	*valid_str(char *str)
 	i = 0;
 	while (i < size)
 	{
-		if(!is_number(array_str[i]))
-		{
-			free(array_int);
-			ft_free_array(array_str);
-			error_printf();
-		}
-		num = ft_atoi(array_str[i]);
-		if (num < INT_MIN || num > INT_MAX)
+		ft_atol(array_str[i], num);
+		if(!is_number(array_str[i]) || num == NULL)
 		{
 			free(array_int);
 			ft_free_array(array_str);
 			error_printf();
 		}
 		array_int[i] = (int)num;
-		printf("num: %d ", array_int[i]);
 		i++;
 	}
 	array_int[size] = 0;
@@ -110,8 +171,6 @@ int	*valid_str(char *str)
 	return(array_int);
 }
 
-// criar uma nova versão da atoi para lidar com núm  long
-// long	ft_atoi_long(const char *str)
 
 // void	sa(t_list_swap *a)
 // {
