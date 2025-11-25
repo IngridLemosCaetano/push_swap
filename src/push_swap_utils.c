@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 23:05:58 by ingrid            #+#    #+#             */
-/*   Updated: 2025/11/25 09:53:10 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/11/25 11:35:05 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	is_number(char	*s)
 	int	i;
 
 	i = 0;
-	if (s[i] == ' ' || s[i] == '+')
+	if (s[i] == '+' || s[i] == '-')
 		i++;
 	if (!s[i])
 		return (0);
@@ -71,6 +71,7 @@ int	*valid_str(char *str)
 	int		*array_int;
 	int		size;
 	int		i;
+	long	num;
 
 	size = 0;
 	array_str = ft_split(str, ' ');
@@ -87,13 +88,21 @@ int	*valid_str(char *str)
 	i = 0;
 	while (i < size)
 	{
-		if(!is_number(array_str[i]) || is_repeat(array_int, array_int[i]))
+		if(!is_number(array_str[i]))
 		{
 			free(array_int);
 			ft_free_array(array_str);
 			error_printf();
 		}
-		array_int[i] = ft_atoi(array_str[i]);
+		num = ft_atoi(array_str[i]);
+		if (num < INT_MIN || num > INT_MAX)
+		{
+			free(array_int);
+			ft_free_array(array_str);
+			error_printf();
+		}
+		array_int[i] = (int)num;
+		printf("num: %d ", array_int[i]);
 		i++;
 	}
 	array_int[size] = 0;
@@ -101,7 +110,8 @@ int	*valid_str(char *str)
 	return(array_int);
 }
 
-
+// criar uma nova versão da atoi para lidar com núm  long
+// long	ft_atoi_long(const char *str)
 
 // void	sa(t_list_swap *a)
 // {

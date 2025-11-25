@@ -6,41 +6,15 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:37:08 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/11/24 21:23:07 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/11/25 11:15:29 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-// static int	*array_int(char *str)
-// {
-// 	int		size;
-// 	int		*array;
-// 	char	**array_str;
-
-// 	size = 0;
-// 	array_str = ft_split(str, ' ');
-// 	while (array_str[size])
-// 		size++;
-// 	if (size > 10) // alterar o 10 par ao maximo
-// 		error_printf();
-// 	array = (int *)malloc(sizeof(int) * (size + 1));
-// 	if (array == NULL)
-// 		error_printf();
-// 	size = 0;
-// 	while (array_str[size] && ft_atoi(array_str[size]))
-// 	{
-// 		array[size] = ft_atoi(array_str[size]);
-// 		size++;
-// 	}
-// 	return(array);
-// }
-
-
-
 int main(void)
 {
-	char *str1 = "100 90 80 70 60 50 40 30 20 10";
+	char *str1 = "100 90 2147483648 80 70 60 50 40 30 20 10";
 	// int num_array[10] = {100, 90, 80, 70, 60, 50, 40, 30, 20, 10};
 	int i = 0;
 	int *array = valid_str(str1);
@@ -49,9 +23,6 @@ int main(void)
 		ft_printf("%d ", array[i]);
 		i++;
 	}
-	i = 0;
-	// int num = 80;
-	// ft_printf("\n%d is_repeat: %d\n", num, is_repeat(num_array, num, 10));
 	return(0);
 }
 
