@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ilemos-c <ilemos-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:19:01 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/11/25 15:25:07 by ilemos-c         ###   ########.fr       */
+/*   Updated: 2025/11/26 20:24:25 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../lib/libft/inc/libft.h"
-# include <limits.h> //eliminar
+# include <limits.h>
 
 typedef struct s_list_swap
 {
@@ -23,11 +23,12 @@ typedef struct s_list_swap
 	struct s_list	*next;
 }	t_list_swap;
 
-void	error_printf(void);
+void	error_exit(void);
+int		is_space(char c);
 void	ft_free_array(char **array);
 int		is_number(char	*s);
 int		is_repeat(int *array, int num);
 int		*valid_str(char *str);
-long	ft_atol(const char *str);
+long	ft_atol(const char *s);
 
 #endif

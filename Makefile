@@ -6,7 +6,7 @@
 #    By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/21 13:36:34 by ingrid            #+#    #+#              #
-#    Updated: 2025/11/13 18:44:49 by ingrid           ###   ########.fr        #
+#    Updated: 2025/11/26 19:51:29 by ingrid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR)/inc
 LIBS = -L$(LIBFT_DIR) -lft
 
-SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/push_swap.c $(SRC_DIR)/push_swap_utils.c
+SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/push_swap.c $(SRC_DIR)/utils.c $(SRC_DIR)/parsing.c $(SRC_DIR)/operations.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
