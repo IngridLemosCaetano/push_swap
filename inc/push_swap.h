@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:19:01 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/11/28 09:49:48 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/11/28 19:06:54 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-//main
+//linked_list
 t_stack	*stack_new(int value);
 void	stack_add_front(t_stack **stack, t_stack *new);
 t_stack	*build_stack_a(int *n_num, int size);
@@ -44,5 +44,11 @@ int		*validate_and_convert(char **nptr, int *size);
 //push_swap
 t_stack	*parsing_str(const char *s);
 t_stack	*parsing_args(int ac, char **av);
+
+//operations
+void	sa_sb_ss(t_stack **a, t_stack **b, int operation);
+void	ra_rb_rr(t_stack **a, t_stack **b, int operation);
+void	rra_rrb_rrr(t_stack **a, t_stack **b, int operation);
+void	pa_pb(t_stack **a, t_stack **b, int operation);
 
 #endif
