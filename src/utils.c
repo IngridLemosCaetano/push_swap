@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 23:05:58 by ingrid            #+#    #+#             */
-/*   Updated: 2025/11/26 20:23:42 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/11/27 20:49:57 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	error_exit(void)
 
 int	is_space(char c)
 {
-	if (c == ' ' || c == '\t')
+	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }
@@ -40,34 +40,48 @@ void	ft_free_array(char **array)
 	free(array);
 }
 
-int	is_number(char	*s)
+int	is_number(const char *s)
 {
 	int	i;
+	int	digit;
 
 	i = 0;
+	digit = 0;
+	while (is_space(s[i]))
+		i++;
 	if (s[i] == '+' || s[i] == '-')
 		i++;
-	if (!s[i])
-		return (0);
-	while (s[i])
+	while (s[i] >= '0' && s[i] <= '9')
 	{
-		if (s[i] < '0' || s[i] > '9')
-			return (0);
+		digit = 1;
 		i++;
 	}
-	return (1);
+	if (s[i] == '\0' && digit)
+		return (1);
+	return (0);
 }
 
-int	is_repeat(int *array, int num)
+long	ft_atol(const char *s)
 {
-	int	i;
+	long	i;
+	long	sign;
+	long	result;
 
 	i = 0;
-	while (array[i] != 0)
+	sign = 1;
+	result = 0;
+	while (is_space(s[i]))
+		i++;
+	if (s[i] == '+' || s[i] == '-')
 	{
-		if (array[i] == num)
-			return (1);
+		if (s[i] == '-')
+			sign = -1;
 		i++;
 	}
-	return (0);
+	while (s[i] >= '0' && s[i] <= '9')
+	{
+		result = result * 10 + (s[i] - '0');
+		i++;
+	}
+	return (result * sign);
 }
