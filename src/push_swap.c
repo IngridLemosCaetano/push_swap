@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:03:54 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/11/28 18:59:06 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/11/29 10:29:13 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,16 @@ static char	**split_args(const char *s)
 	return (nptr);
 }
 
-t_stack	*parsing_str(const char *s)
+t_stack	*parsing_str(const char *s, int *size)
 {
 	char	**nptr;
 	int		*n_num;
-	int		size;
 	t_stack	*a;
 
 	nptr = split_args(s);
-	n_num = validate_and_convert(nptr, &size);
+	n_num = validate_and_convert(nptr, size);
 	ft_free_array(nptr);
-	a = build_stack_a(n_num, size);
+	a = build_stack_a(n_num, *size);
 	free(n_num);
 	return (a);
 }
@@ -70,7 +69,7 @@ t_stack	*parsing_args(int ac, char **av)
 		n_num[i] = out;
 		i++;
 	}
-	a = build_stack_a(n_num, ac - 1);
+	a = build_stack_a(n_num, (ac - 1));
 	free(n_num);
 	return (a);
 }
