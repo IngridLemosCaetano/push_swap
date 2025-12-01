@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:37:08 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/12/01 16:43:36 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 16:44:56 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,3 @@ void	sort(t_stack **a, t_stack **b, int size)
 	else
 		ft_printf("radix/chunks a ser desenvolvido\n");
 }
-// static void    print_stack(const char *name, t_stack *s)
-// {
-//     printf("%s: ", name);
-//     while (s)
-//     {
-//         printf("%d ", s->num);
-//         s = s->next;
-//     }
-//     printf("\n");
-// }

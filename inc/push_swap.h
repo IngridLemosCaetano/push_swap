@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:19:01 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/11/29 10:33:38 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 14:29:50 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void	rra_rrb_rrr(t_stack **a, t_stack **b, int operation);
 void	pa_pb(t_stack **a, t_stack **b, int operation);
 
 //ordination
-int		is_sorted(t_stack *a);
-void	sort_small(t_stack **a, t_stack **b, int size);
+int		is_sorted(t_stack *s);
+void	sort_small_3(t_stack **a, t_stack **b, int size);
+void	sort_small_5(t_stack **a, t_stack **b, int size);
 void	sort(t_stack **a, t_stack **b, int size);
 
 #endif
