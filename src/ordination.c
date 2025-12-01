@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 19:08:08 by ingrid            #+#    #+#             */
-/*   Updated: 2025/11/29 09:38:17 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 13:55:19 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,20 @@ void	sort_small(t_stack **a, t_stack **b, int size)
 		sa_sb_ss(a, b, 1);
 	else if (size == 3)
 	{
-		if ((*a)->num > (*a)->next->num)
+		if ((*a)->num < (*a)->next->num)
 		{
-			sa_sb_ss(a, b, 1);
-			if(!is_sorted(*a))
-				rra_rrb_rrr(a, b, 1);
-			if(!is_sorted(*a))
+			rra_rrb_rrr(a, b, 1);
+			if (!is_sorted(*a))
 				sa_sb_ss(a, b, 1);
 		}
 		else
 		{
-			rra_rrb_rrr(a, b , 1);
-			if(!is_sorted(*a))
+			if ((*a)->num == 3 && (*a)->next->num == 1)
+				ra_rb_rr(a, b, 1);
+			else
 				sa_sb_ss(a, b, 1);
+			if (!is_sorted(*a))
+				rra_rrb_rrr(a, b, 1);
 		}
 	}
 }

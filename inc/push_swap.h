@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:19:01 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/11/29 10:11:53 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/11/29 10:33:38 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_stack
 t_stack	*stack_new(int value);
 void	stack_add_front(t_stack **stack, t_stack *new);
 t_stack	*build_stack_a(int *n_num, int size);
+void	free_stack(t_stack **stack);
 
 //utils
 void	error_exit(void);

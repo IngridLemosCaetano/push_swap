@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:37:08 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/11/29 10:28:49 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/11/29 10:32:33 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int ac, char *av[])
 		if (!is_sorted(a))
 			sort(&a, &b, ac - 1);
 	}
-	// free_stack(&a);
+	free_stack(&a);
 	return (0);
 }
 
