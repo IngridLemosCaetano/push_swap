@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:19:01 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/12/01 14:29:50 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 18:49:35 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int		is_duplicate(int *n_num, int len, int value);
 int		*validate_and_convert(char **nptr, int *size);
 
 //push_swap
-t_stack	*parsing_str(const char *s, int *size);
-t_stack	*parsing_args(int ac, char **av);
+t_stack	*parsing_str(const char *s, int *size, int **n_num);
+t_stack	*parsing_args(int ac, char **av, int **n_num);
 
 //operations
 void	sa_sb_ss(t_stack **a, t_stack **b, int operation);
@@ -56,6 +56,6 @@ void	pa_pb(t_stack **a, t_stack **b, int operation);
 int		is_sorted(t_stack *s);
 void	sort_small_3(t_stack **a, t_stack **b, int size);
 void	sort_small_5(t_stack **a, t_stack **b, int size);
-void	sort(t_stack **a, t_stack **b, int size);
+void	sort(t_stack **a, int size);
 
 #endif

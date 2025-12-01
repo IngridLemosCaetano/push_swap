@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:03:54 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/11/29 10:29:13 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 19:04:04 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,43 +33,39 @@ static char	**split_args(const char *s)
 	return (nptr);
 }
 
-t_stack	*parsing_str(const char *s, int *size)
+t_stack	*parsing_str(const char *s, int *size, int **n_num)
 {
 	char	**nptr;
-	int		*n_num;
 	t_stack	*a;
 
 	nptr = split_args(s);
-	n_num = validate_and_convert(nptr, size);
+	*n_num = validate_and_convert(nptr, size);
 	ft_free_array(nptr);
-	a = build_stack_a(n_num, *size);
-	free(n_num);
+	a = build_stack_a(*n_num, *size);
 	return (a);
 }
 
-t_stack	*parsing_args(int ac, char **av)
+t_stack	*parsing_args(int ac, char **av, int **n_num)
 {
 	int		i;
-	int		*n_num;
 	int		out;
 	t_stack	*a;
 
-	n_num = malloc(sizeof(int) * (ac -1));
-	if (!n_num)
+	*n_num = malloc(sizeof(int) * (ac -1));
+	if (!(*n_num))
 		error_exit();
 	i = 0;
 	while (i < (ac - 1))
 	{
 		if (!is_number(av[i + 1]) || !is_int_str(av[i + 1], &out)
-			|| is_duplicate(n_num, i, out))
+			|| is_duplicate(*n_num, i, out))
 		{
-			free(n_num);
+			free(*n_num);
 			error_exit();
 		}
-		n_num[i] = out;
+		(*n_num)[i] = out;
 		i++;
 	}
-	a = build_stack_a(n_num, (ac - 1));
-	free(n_num);
+	a = build_stack_a(*n_num, (ac - 1));
 	return (a);
 }
