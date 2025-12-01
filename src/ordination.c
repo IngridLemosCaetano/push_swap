@@ -6,31 +6,69 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 19:08:08 by ingrid            #+#    #+#             */
-/*   Updated: 2025/12/01 13:55:19 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 16:43:10 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-int	is_sorted(t_stack *a)
+int	is_sorted(t_stack *s)
 {
-	if (!a || !a->next)
+	if (!s || !s->next)
 		return (1);
-	while (a->next)
+	while (s->next)
 	{
-		if (a->num > a->next->num)
+		if (s->num > s->next->num)
 			return (0);
-		a = a->next;
+		s = s->next;
 	}
 	return (1);
 }
 
-void	sort_small(t_stack **a, t_stack **b, int size)
+static void	get_min_max(t_stack *a, int *min, int *max)
 {
+	t_stack	*temp;
+
+	if (!a || !min || !max)
+		return ;
+	temp = a;
+	*min = a->num;
+	*max = a->num;
+	while (temp)
+	{
+		if (temp->num < *min)
+			*min = temp->num;
+		if (temp->num > *max)
+			*max = temp->num;
+		temp = temp->next;
+	}
+}
+
+static int	get_index_of_value(t_stack *a, int value)
+{
+	int	i;
+
+	i = 0;
+	while (a)
+	{
+		if (a->num == value)
+			return (i);
+		a = a->next;
+		i++;
+	}
+	return (-1);
+}
+
+void	sort_small_3(t_stack **a, t_stack **b, int size)
+{
+	int	min;
+	int	max;
+
 	if (size == 2)
 		sa_sb_ss(a, b, 1);
 	else if (size == 3)
 	{
+		get_min_max(*a, &min, &max);
 		if ((*a)->num < (*a)->next->num)
 		{
 			rra_rrb_rrr(a, b, 1);
@@ -39,7 +77,7 @@ void	sort_small(t_stack **a, t_stack **b, int size)
 		}
 		else
 		{
-			if ((*a)->num == 3 && (*a)->next->num == 1)
+			if ((*a)->num == max && (*a)->next->num == min)
 				ra_rb_rr(a, b, 1);
 			else
 				sa_sb_ss(a, b, 1);
@@ -49,12 +87,30 @@ void	sort_small(t_stack **a, t_stack **b, int size)
 	}
 }
 
-void	sort(t_stack **a, t_stack **b, int size)
+void	sort_small_5(t_stack **a, t_stack **b, int size)
 {
-	if (size == 2 || size == 3)
-		sort_small(a, b, size);
-	// else if (size == 4 || size == 5)
-	// 	sort_4_5(a, b, size);
-	else
-		ft_printf("sort_big em desenvolvimento\n");
+	int	min;
+	int	max_dummy;
+	int	idx_min;
+
+	while (size > 3)
+	{
+		get_min_max(*a, &min, &max_dummy);
+		idx_min = get_index_of_value(*a, min);
+		if (idx_min <= size / 2)
+		{
+			while ((*a)->num != min)
+				ra_rb_rr(a, b, 1);
+		}
+		else
+		{
+			while ((*a)->num != min)
+				rra_rrb_rrr(a, b, 1);
+		}
+		pa_pb(a, b, 2);
+		size--;
+	}
+	sort_small_3(a, b, size);
+	while (*b)
+		pa_pb(a, b, 1);
 }

@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:37:08 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/11/29 10:32:33 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 16:43:36 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int ac, char *av[])
 
 	if (ac == 2)
 	{
-		a = parsing_str(av[1], &size);;
+		a = parsing_str(av[1], &size);
 		if (!is_sorted(a))
 			sort(&a, &b, size);
 	}
@@ -35,6 +35,15 @@ int	main(int ac, char *av[])
 	return (0);
 }
 
+void	sort(t_stack **a, t_stack **b, int size)
+{
+	if (size <= 3)
+		sort_small_3(a, b, size);
+	else if (size <= 5)
+		sort_small_5(a, b, size);
+	else
+		ft_printf("radix/chunks a ser desenvolvido\n");
+}
 // static void    print_stack(const char *name, t_stack *s)
 // {
 //     printf("%s: ", name);
@@ -45,4 +54,3 @@ int	main(int ac, char *av[])
 //     }
 //     printf("\n");
 // }
-
