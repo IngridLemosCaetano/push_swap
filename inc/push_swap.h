@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:19:01 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/12/01 18:49:35 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 21:10:19 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,31 @@
 typedef struct s_stack
 {
 	int				num;
+	int				index;
 	struct s_stack	*next;
 }	t_stack;
 
 //linked_list
 t_stack	*stack_new(int value);
 void	stack_add_front(t_stack **stack, t_stack *new);
-t_stack	*build_stack_a(int *n_num, int size);
+t_stack	*build_stack_a(int *nums, int size);
 void	free_stack(t_stack **stack);
 
 //utils
 void	error_exit(void);
 int		is_space(char c);
-void	ft_free_array(char **array);
+void	ft_free_array(char **arr);
 int		is_number(const char *s);
 long	ft_atol(const char *s);
 
 //parsing
 int		is_int_str(const char *s, int *out);
-int		is_duplicate(int *n_num, int len, int value);
+int		is_duplicate(int *nums, int len, int value);
 int		*validate_and_convert(char **nptr, int *size);
 
 //push_swap
-t_stack	*parsing_str(const char *s, int *size, int **n_num);
-t_stack	*parsing_args(int ac, char **av, int **n_num);
+t_stack	*parsing_str(const char *s, int *size, int **nums);
+t_stack	*parsing_args(char **av, int size, int **nums);
 
 //operations
 void	sa_sb_ss(t_stack **a, t_stack **b, int operation);
@@ -57,5 +58,8 @@ int		is_sorted(t_stack *s);
 void	sort_small_3(t_stack **a, t_stack **b, int size);
 void	sort_small_5(t_stack **a, t_stack **b, int size);
 void	sort(t_stack **a, int size);
+
+//main
+int	*get_idx_nums(int *nums, int size)
 
 #endif

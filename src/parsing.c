@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 19:43:38 by ingrid            #+#    #+#             */
-/*   Updated: 2025/11/28 09:49:39 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 19:14:58 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_int_str(const char *s, int *out)
 static int	*alloc_int_array(char **nptr, int *size)
 {
 	int	i;
-	int	*n_num;
+	int	*nums;
 
 	i = 0;
 	while (nptr[i])
@@ -34,20 +34,20 @@ static int	*alloc_int_array(char **nptr, int *size)
 	if (i == 0)
 		error_exit();
 	*size = i;
-	n_num = malloc(sizeof(int) * i);
-	if (!n_num)
+	nums = malloc(sizeof(int) * i);
+	if (!nums)
 		error_exit();
-	return (n_num);
+	return (nums);
 }
 
-int	is_duplicate(int *n_num, int len, int value)
+int	is_duplicate(int *nums, int len, int value)
 {
 	int	j;
 
 	j = 0;
 	while (j < len)
 	{
-		if (n_num[j] == value)
+		if (nums[j] == value)
 			return (1);
 		j++;
 	}
@@ -56,22 +56,22 @@ int	is_duplicate(int *n_num, int len, int value)
 
 int	*validate_and_convert(char **nptr, int *size)
 {
-	int	*n_num;
+	int	*nums;
 	int	i;
 	int	out;
 
-	n_num = alloc_int_array(nptr, size);
+	nums = alloc_int_array(nptr, size);
 	i = 0;
 	while (nptr[i])
 	{
 		if (!is_number(nptr[i]) || !is_int_str(nptr[i], &out)
-			|| is_duplicate(n_num, i, out))
+			|| is_duplicate(nums, i, out))
 		{
-			free(n_num);
+			free(nums);
 			error_exit();
 		}
-		n_num[i] = out;
+		nums[i] = out;
 		i++;
 	}
-	return (n_num);
+	return (nums);
 }

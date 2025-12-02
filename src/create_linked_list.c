@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:55:11 by ingrid            #+#    #+#             */
-/*   Updated: 2025/12/01 17:47:38 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 19:10:24 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	stack_add_front(t_stack **stack, t_stack *new)
 	*stack = new;
 }
 
-t_stack	*build_stack_a(int *n_num, int size)
+t_stack	*build_stack_a(int *nums, int size)
 {
 	t_stack	*a;
 	int		i;
@@ -41,7 +41,7 @@ t_stack	*build_stack_a(int *n_num, int size)
 	i = size - 1;
 	while (i >= 0)
 	{
-		stack_add_front(&a, stack_new(n_num[i]));
+		stack_add_front(&a, stack_new(nums[i]));
 		i--;
 	}
 	return (a);

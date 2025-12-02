@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 23:05:58 by ingrid            #+#    #+#             */
-/*   Updated: 2025/11/27 20:49:57 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/01 19:17:41 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,19 @@ int	is_space(char c)
 	return (0);
 }
 
-void	ft_free_array(char **array)
+void	ft_free_array(char **arr)
 {
 	int	i;
 
 	i = 0;
-	if (!array)
+	if (!arr)
 		return ;
-	while (array[i])
+	while (arr[i])
 	{
-		free(array[i]);
+		free(arr[i]);
 		i++;
 	}
-	free(array);
+	free(arr);
 }
 
 int	is_number(const char *s)
