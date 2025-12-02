@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:37:08 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/12/01 21:10:59 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/02 12:09:06 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int ac, char *av[])
 	t_stack	*a;
 	int		size;
 	int		*nums;
+	int		*idx;
 
 	if (ac == 2)
 		a = parsing_str(av[1], &size, &nums);
@@ -25,6 +26,13 @@ int	main(int ac, char *av[])
 		size = ac - 1;
 		a = parsing_args(av, size, &nums);
 	}
+	else
+		return (0);
+	if (!a)
+		return (0);
+	idx = get_idx_nums(nums, size);
+	set_indexes(a, idx, size);
+	free(idx);
 	if (!is_sorted(a))
 		sort(&a, size);
 	free_stack(&a);
@@ -42,7 +50,7 @@ void	sort(t_stack **a, int size)
 	else if (size <= 5)
 		sort_small_5(a, &b, size);
 	else
-		ft_printf("radix/chunks a ser desenvolvido\n");
+		radix_sort(a, &b, size);
 }
 
 int	*get_idx_nums(int *nums, int size)
@@ -56,11 +64,11 @@ int	*get_idx_nums(int *nums, int size)
 	if (!idx)
 		return (NULL);
 	i = 0;
-	while(i < size)
+	while (i < size)
 	{
 		j = 0;
 		rank = 0;
-		while(j < size)
+		while (j < size)
 		{
 			if (nums[j] < nums[i])
 				rank++;
@@ -70,4 +78,32 @@ int	*get_idx_nums(int *nums, int size)
 		i++;
 	}
 	return (idx);
+}
+
+void	set_indexes(t_stack*a, int *idx, int size)
+{
+	t_stack	*temp;
+	int		i;
+
+	i = 0;
+	temp = a;
+	while (temp && i < size)
+	{
+		temp->index = idx[i];
+		temp = temp->next;
+		i++;
+	}
+}
+
+int	stack_size(t_stack *s)
+{
+	int	i;
+
+	i = 0;
+	while (s)
+	{
+		s = s->next;
+		i++;
+	}
+	return (i);
 }

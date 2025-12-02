@@ -6,7 +6,7 @@
 #    By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/21 13:36:34 by ingrid            #+#    #+#              #
-#    Updated: 2025/11/28 19:08:51 by ingrid           ###   ########.fr        #
+#    Updated: 2025/12/01 21:31:07 by ingrid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBS = -L$(LIBFT_DIR) -lft
 
 SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/push_swap.c $(SRC_DIR)/utils.c $(SRC_DIR)/parsing.c \
 		$(SRC_DIR)/operation_push_swap.c $(SRC_DIR)/operation_rotate.c $(SRC_DIR)/operation_reverse_rotate.c \
-		$(SRC_DIR)/create_linked_list.c $(SRC_DIR)/ordination.c
+		$(SRC_DIR)/create_linked_list.c $(SRC_DIR)/ordination.c $(SRC_DIR)/radix.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

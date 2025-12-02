@@ -6,7 +6,7 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:19:01 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/12/01 21:10:19 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/02 12:34:55 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ void	sort_small_5(t_stack **a, t_stack **b, int size);
 void	sort(t_stack **a, int size);
 
 //main
-int	*get_idx_nums(int *nums, int size)
+int		*get_idx_nums(int *nums, int size);
+void	set_indexes(t_stack*a, int *idx, int size);
+
+//radix
+void	radix_sort(t_stack **a, t_stack **b, int size);
 
 #endif
