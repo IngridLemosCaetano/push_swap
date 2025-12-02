@@ -6,66 +6,91 @@
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 15:03:54 by ilemos-c          #+#    #+#             */
-/*   Updated: 2025/12/01 19:28:12 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/02 14:15:06 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static char	**split_args(const char *s)
+int	main(int ac, char *av[])
 {
-	char	**nptr;
-	int		i;
+	t_stack	*a;
+	int		size;
+	int		*nums;
+	int		*idx;
 
-	if (!s)
-		error_exit();
-	nptr = ft_split(s, ' ');
-	if (!nptr)
-		error_exit();
-	i = 0;
-	while (nptr[i])
-		i++;
-	if (i == 0)
+	if (ac == 2)
+		a = parsing_str(av[1], &size, &nums);
+	else if (ac > 2)
 	{
-		ft_free_array(nptr);
-		error_exit();
+		size = ac - 1;
+		a = parsing_args(av, size, &nums);
 	}
-	return (nptr);
+	else
+		return (0);
+	if (!a)
+		return (0);
+	idx = get_idx_nums(nums, size);
+	set_indexes(a, idx, size);
+	free(idx);
+	if (!is_sorted(a))
+		sort(&a, size);
+	free_stack(&a);
+	free(nums);
+	return (0);
 }
 
-t_stack	*parsing_str(const char *s, int *size, int **nums)
+void	sort(t_stack **a, int size)
 {
-	char	**nptr;
-	t_stack	*a;
+	t_stack	*b;
 
-	nptr = split_args(s);
-	*nums = validate_and_convert(nptr, size);
-	ft_free_array(nptr);
-	a = build_stack_a(*nums, *size);
-	return (a);
+	b = NULL;
+	if (size <= 3)
+		sort_small_3(a, &b, size);
+	else if (size <= 5)
+		sort_small_5(a, &b, size);
+	else
+		sort_radix(a, &b, size);
 }
 
-t_stack	*parsing_args(char **av, int size, int **nums)
+int	*get_idx_nums(int *nums, int size)
 {
-	int		i;
-	int		out;
-	t_stack	*a;
+	int	i;
+	int	j;
+	int	rank;
+	int	*idx;
 
-	*nums = malloc(sizeof(int) * size);
-	if (!(*nums))
-		error_exit();
+	idx = malloc(sizeof(int) * size);
+	if (!idx)
+		return (NULL);
 	i = 0;
 	while (i < size)
 	{
-		if (!is_number(av[i + 1]) || !is_int_str(av[i + 1], &out)
-			|| is_duplicate(*nums, i, out))
+		j = 0;
+		rank = 0;
+		while (j < size)
 		{
-			free(*nums);
-			error_exit();
+			if (nums[j] < nums[i])
+				rank++;
+			j++;
 		}
-		(*nums)[i] = out;
+		idx[i] = rank;
 		i++;
 	}
-	a = build_stack_a(*nums, size);
-	return (a);
+	return (idx);
+}
+
+void	set_indexes(t_stack*a, int *idx, int size)
+{
+	t_stack	*temp;
+	int		i;
+
+	i = 0;
+	temp = a;
+	while (temp && i < size)
+	{
+		temp->index = idx[i];
+		temp = temp->next;
+		i++;
+	}
 }

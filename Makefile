@@ -6,7 +6,7 @@
 #    By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/21 13:36:34 by ingrid            #+#    #+#              #
-#    Updated: 2025/12/01 21:31:07 by ingrid           ###   ########.fr        #
+#    Updated: 2025/12/02 13:56:14 by ingrid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,10 @@ CFLAGS = -Wall -Wextra -Werror
 INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR)/inc
 LIBS = -L$(LIBFT_DIR) -lft
 
-SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/push_swap.c $(SRC_DIR)/utils.c $(SRC_DIR)/parsing.c \
-		$(SRC_DIR)/operation_push_swap.c $(SRC_DIR)/operation_rotate.c $(SRC_DIR)/operation_reverse_rotate.c \
-		$(SRC_DIR)/create_linked_list.c $(SRC_DIR)/ordination.c $(SRC_DIR)/radix.c
+SRCS = $(SRC_DIR)/push_swap.c $(SRC_DIR)/utils.c $(SRC_DIR)/stack.c \
+		$(SRC_DIR)/parsing_args.c $(SRC_DIR)/parsing.c \
+		$(SRC_DIR)/operations_swap_push.c $(SRC_DIR)/operations_rotate.c $(SRC_DIR)/operations_reverse_rotate.c \
+		$(SRC_DIR)/sort_small.c $(SRC_DIR)/sort_radix.c
 
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

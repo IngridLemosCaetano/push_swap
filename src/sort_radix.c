@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   radix.c                                            :+:      :+:    :+:   */
+/*   sort_radix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 21:22:11 by ingrid            #+#    #+#             */
-/*   Updated: 2025/12/02 12:35:05 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/02 13:48:00 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	get_max_bits(t_stack *a)
 	return (max_bits);
 }
 
-void	radix_sort(t_stack **a, t_stack **b, int size)
+void	sort_radix(t_stack **a, t_stack **b, int size)
 {
 	int	i;
 	int	j;

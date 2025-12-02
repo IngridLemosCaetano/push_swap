@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_linked_list.c                               :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ingrid <ingrid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 18:55:11 by ingrid            #+#    #+#             */
-/*   Updated: 2025/12/01 19:10:24 by ingrid           ###   ########.fr       */
+/*   Updated: 2025/12/02 14:06:19 by ingrid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-t_stack	*stack_new(int value)
+static t_stack	*stack_new(int value)
 {
 	t_stack	*node;
 
@@ -24,7 +24,7 @@ t_stack	*stack_new(int value)
 	return (node);
 }
 
-void	stack_add_front(t_stack **stack, t_stack *new)
+static void	stack_add_front(t_stack **stack, t_stack *new)
 {
 	if (!new)
 		return ;
